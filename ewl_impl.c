@@ -247,7 +247,7 @@ i32 EWLRelease(const void *inst)
 #elif (EWL_ALLOC_API == EWL_USE_STM32MPM_MM)
 #elif (EWL_ALLOC_API == EWL_USER_MM)
 #elif (EWL_ALLOC_API == EWL_USE_FREERTOS_MM)
-  vEventGroupDelete(ewl_instance.ewl_event_group);  
+  vEventGroupDelete(ewl_instance.ewl_event_group);
 #else
 #endif /* EWL_ALLOC_API */
   /* save memory pool address */
@@ -742,14 +742,15 @@ void VENC_IRQHandler(void)
     u32 status = tx_event_flags_set(&ewl_instance.flag_events, 1, TX_OR);
     if (status != TX_SUCCESS)
     {
-      PTRACE("set flags error\n");
+
       return ;
     }
 #elif (EWL_SYNC_API == EWL_USE_FREERTOS_SYNC)
     BaseType_t higher_prio_task_woken = pdFALSE;
     if(xEventGroupSetBitsFromISR(ewl_instance.ewl_event_group, 1, &higher_prio_task_woken) == pdFAIL){
-      portYIELD_FROM_ISR(higher_prio_task_woken);
+      PTRACE("set flags error\n");
     }
+    portYIELD_FROM_ISR(higher_prio_task_woken);
 #endif /* EWL_SYNC_API */
   }
 }
