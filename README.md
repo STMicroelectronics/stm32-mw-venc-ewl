@@ -1,6 +1,6 @@
 # Middleware Video Encoder Wrapper Layer (EWL)
 
-![latest tag](https://img.shields.io/github/v/tag/STMicroelectronics/stm32-mw-venc-ewl.svg?color=brightgreen)
+![tag](https://img.shields.io/badge/tag-v1.2.2-brightgreen.svg)
 
 ## Overview
 
